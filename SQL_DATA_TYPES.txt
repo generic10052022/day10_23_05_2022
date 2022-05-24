@@ -1,0 +1,144 @@
+***** SQL DATA TYPES *************
+
+character
+pre-determined length 
+subject name - 30
+
+size 30  
+occupies space for 30 characters / can store upto 30 characters
+
+
+max capacity 2000  bytes
+
+example 'Information-Technology'
+while storing Information-Technology________
+when retrieving character-value, only value is retrieved not spaces 
+
+char(10)
+character(10)
+
+enclosed in single quotes ' '
+
+
+ 
+varchar2
+varying length
+item-description 500
+
+size 500
+occupies space as per value stored/1 or 2 bytes for storing length
+but full size can be used
+
+max capacity 4000 bytes
+
+example 
+
+varchar(60)
+varchar2(4)
+character varying(4)
+
+enclosed in single quotes ' '
+
+
+integer
+
+integral /integer/ numbers with only precision no scale
+
+number(4)
+allows to store 4 digit number
+
+max size 38
+
+number 
+number(n)
+numeric(n)
+
+number(5)
+numeric(10)
+
+
+
+decimal numbers/ numbers with precision and scale
+number(p,s)
+number(7,2)  integer 5 decimal 2  
+ 99999.99
+
+123.45 => 123.45  145.453  => 145.45  167.768 => 167.77 
+145.455 => 145.46
+
+546347.20 => error
+
+number(p,-s) 
+number(5,-2) integer part is rounded off to hundredth place
+
+67895
+
+
+numeric(8,0) integer 8 decimal 0
+56.70 => 57 98.10 => 98
+
+decimal(12,4) integer 8 decimal 4
+
+always remember that in case of precision,scale precision is inclusive of scale  i.e. integral part =p-s decimal part=s
+
+scale is rounded off as per size 
+
+
+
+date  'dd-mon-yy' '23-jan-22' '9-Apr-76'
+
+by default 22 will be taken as 2022 and 76 as 1976
+
+to speciy 1922 use yyyy format for entering year '12-Jan-1922'
+
+timestamp ''
+
+
+**** SQL OPERATORS *************
+
+BETWEEN
+
+SALARY BETWEEN 2500 AND 3000
+
+SALARY >=2500 AND SALARY<=3000
+
+DEPT IN ('IVS','ETA','ICP')
+
+DEPT='IVS' OR DEPT='ETA' OR DEPT='ICP'
+
+DEPT='ICP' => data is case sensitive
+DEPT='icp' => data is case sensitive
+
+DEPT LIKE 'I%'      => IVS / ICP
+
+DEPT NOT LIKE 'I%'  => ETA
+
+BONUS IS NULL
+BONUS IS NOT NULL 
+
+SNEHA   SUMIT   ARJUN   KOMAL   RAVI   POOJA  SAMEER
+
+NAME LIKE 'S%' => SNEHA SUMIT SAMEER
+
+NAME LIKE 'A%' => ARJUN
+
+NAME NOT LIKE 'S%' => ARJUN KOMAL RAVI POOJA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
