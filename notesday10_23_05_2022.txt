@@ -190,6 +190,11 @@ Constraints are applied in two ways:
      title VARCHAR2(20),
      price NUMBER(7,2)
     )
+/*
+In the above case bookid wont allow to insert null but for title and price we 
+can enter null because for title and price default setting is null value allowed. 
+
+*/
 
 INSERT INTO books VALUES(1,'Java',500.79)
 INSERT INTO books VALUES(2,'DBMS',40000.89) 
@@ -260,7 +265,7 @@ CREATE TABLE customerdetails (
     city VARCHAR2(20) DEFAULT 'Delhi'
   );
   
-  INSERT INTO customerdetails(customerid,customername) VALUES(1,'Ashok');
+INSERT INTO customerdetails(customerid,customername) VALUES(1,'Ashok');
 INSERT INTO customerdetails VALUES(2,'Ashok',NULL);
 INSERT INTO customerdetails VALUES(3,'Rohit','Chennai');
 ----------------------------------------------------------------------------------------
@@ -473,6 +478,62 @@ column level only.
     )
 
 
+---------
+CREATE TABLE student(
+studentid INTEGER PRIMARY KEY,
+name VARCHAR2(20) NOT NULL,
+contactnumber VARCHAR2(10) NOT NULL
+);
+INSERT INTO student VALUES(1,'Ravi','1234567890');
 
 
-  
+
+CREATE TABLE marks(
+subjectid INTEGER,
+studentid INTEGER REFERENCES student(studentid),
+marks INTEGER
+);  OR
+
+-- The below declartion of foreign key is at table level
+CREATE TABLE marks(
+subjectid INTEGER,
+studentid INTEGER,
+FOREIGN KEY(studentid) REFERENCES student(studentid),
+marks INTEGER
+);
+INSERT INTO marks VALUES(100,2,60);  -- we cannot insert the record as it is not present in the student table
+INSERT INTO marks VALUES(100,1,60);  -- this record will be inserted
+-----------------------------------------------------------------------------------------------------
+Q Is it mandatory to learn how to apply the constraint at table level?
+A It is not mandatory but we have some of the situations where it is must to apply table level constraint.
+
+Example
+When we have composite primary key.
+
+Suppose we are writing
+
+CREATE TABLE student_scores(
+roll INTEGER PRIMARY KEY,
+subjectid INTEGER PRIMARY KEY,
+marks INTEGER
+);
+
+-- ORA-02260: table can have only one primary key
+
+CREATE TABLE student_scores(
+roll INTEGER,
+subjectid INTEGER,
+marks INTEGER,
+PRIMARY KEY(roll,subjectid)
+);
+--------------------------------------------------------------------------------------
+Design a table for employees which is having the columns like id,name,dob and doj
+
+CREATE TABLE employeedetails(
+id INTEGER,
+name VARCHAR2(20) NOT NULL,
+dob date,
+doj date,
+CHECK(doj>dob)
+);
+------------------------------------------------------------------------------------------------
